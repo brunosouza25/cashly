@@ -1,5 +1,9 @@
 services:
+
     laravel.test:
+        dns:
+            - 8.8.8.8
+            - 8.8.4.4
         build:
             context: './vendor/laravel/sail/runtimes/8.5'
             dockerfile: Dockerfile
