@@ -42,10 +42,12 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
-          extensions: mbstring, bcmath, gd, zip, mysql, pdo_mysql, pdo_pgsql, redis
-          tools: composer:v2, pint, phpstan
+          php-version: '8.5'
+          extensions: mbstring, bcmath, gd, zip, pdo_pgsql, redis
+          tools: composer:v2
           coverage: none
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Install Composer Dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
