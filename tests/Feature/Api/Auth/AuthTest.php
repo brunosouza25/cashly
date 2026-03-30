@@ -8,7 +8,6 @@ use function Pest\Laravel\{postJson, assertDatabaseHas};
 uses(RefreshDatabase::class);
 
 test("should be able to register and login", function () {
-    // Passo 1: Registro
     postJson("api/auth/register", [
         'name' => 'Bruno Pestana',
         'email' => 'bruno@example.com',
@@ -16,13 +15,12 @@ test("should be able to register and login", function () {
         'password_confirmation' => 'password123',
     ])->assertCreated();
 
-    // Passo 2: Login (Aqui as requisições são independentes)
     postJson("api/auth/login", [
         'email' => 'bruno@example.com',
         'password' => 'password123',
     ])->assertOk()->assertJsonStructure([
         "token",
-        "user" => ["name", "email"] // Você pode até detalhar o que vem dentro de user
+        "user" => ["name", "email"]
     ]);
 });
 

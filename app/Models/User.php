@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -41,5 +42,9 @@ class User extends Authenticatable
     public function newUniqueId(): string
     {
         return (string) Str::uuid7();
+    }
+    public function accounts(): HasMany
+    {
+        return $this->hasMany(Account::class);
     }
 }

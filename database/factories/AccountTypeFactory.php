@@ -20,12 +20,16 @@ class AccountTypeFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->randomElement([
+        $baseName = fake()->randomElement([
             'Wallet',
             'Bank Account',
             'Credit Card',
             'Savings',
+            'Investment',
+            'Cash',
         ]);
+
+        $name = $baseName . ' ' . fake()->unique()->randomNumber(5);
 
         return [
             'name' => $name,
