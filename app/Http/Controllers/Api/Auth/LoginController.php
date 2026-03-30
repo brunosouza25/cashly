@@ -16,16 +16,16 @@ class LoginController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = User::where("email", $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
-        if(!$user || !Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                "email" => [__("auth.failed")],
+                'email' => [__('auth.failed')],
             ]);
         }
 
-        $token = $user->createToken(env("APP_NAME"))->plainTextToken;
+        $token = $user->createToken(env('APP_NAME'))->plainTextToken;
 
-        return response()->json(["token" => $token, "user" => new AuthResource($user)]);
+        return response()->json(['token' => $token, 'user' => new AuthResource($user)]);
     }
 }

@@ -24,7 +24,7 @@ class AccountFactory extends Factory
             'id' => str()->uuid7(),
             'user_id' => User::factory(),
             'account_type_id' => AccountType::factory(),
-            'name' => $this->faker->word() . ' Account',
+            'name' => $this->faker->word().' Account',
             'balance' => $this->faker->randomFloat(2, 0, 10000),
             'currency' => 'BRL',
             'status' => AccountStatus::ACTIVE,

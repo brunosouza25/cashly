@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -17,6 +17,6 @@ abstract class BaseModel extends Model
 
     public function newUniqueId(): string
     {
-        return (string)Str::uuid7();
+        return (string) Str::uuid7();
     }
 }

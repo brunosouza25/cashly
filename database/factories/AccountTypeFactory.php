@@ -12,7 +12,9 @@ use Illuminate\Support\Str;
 class AccountTypeFactory extends Factory
 {
     public $incrementing = false;
+
     protected $keyType = 'string';
+
     /**
      * Define the model's default state.
      *
@@ -29,13 +31,13 @@ class AccountTypeFactory extends Factory
             'Cash',
         ]);
 
-        $name = $baseName . ' ' . fake()->unique()->randomNumber(5);
+        $name = $baseName.' '.fake()->unique()->randomNumber(5);
 
         return [
             'name' => $name,
             'slug' => Str::slug($name),
-            "icon" => $this->faker->imageUrl(),
-            "color" => $this->faker->hexColor(),
+            'icon' => $this->faker->imageUrl(),
+            'color' => $this->faker->hexColor(),
         ];
     }
 }

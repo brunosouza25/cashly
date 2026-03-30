@@ -2,29 +2,30 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Sanctum\Sanctum;
-use function Pest\Laravel\{postJson, assertDatabaseHas};
+
+use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\postJson;
 
 uses(RefreshDatabase::class);
 
-test("should be able to register and login", function () {
-    postJson("api/auth/register", [
+test('should be able to register and login', function () {
+    postJson('api/auth/register', [
         'name' => 'Bruno Pestana',
         'email' => 'bruno@example.com',
         'password' => 'password123',
         'password_confirmation' => 'password123',
     ])->assertCreated();
 
-    postJson("api/auth/login", [
+    postJson('api/auth/login', [
         'email' => 'bruno@example.com',
         'password' => 'password123',
     ])->assertOk()->assertJsonStructure([
-        "token",
-        "user" => ["name", "email"]
+        'token',
+        'user' => ['name', 'email'],
     ]);
 });
 
-test("should not be able to log in with invalid credentials", function () {
+test('should not be able to log in with invalid credentials', function () {
     $user = User::factory()->createOne();
     postJson('/api/auth/login', [
         'email' => $user->email,
@@ -50,8 +51,8 @@ test('it should register a new user successfully', function () {
             'token',
             'user' => [
                 'name',
-                'email'
-            ]
+                'email',
+            ],
         ]);
 
     assertDatabaseHas('users', [
@@ -79,7 +80,6 @@ test('it should fail to register with missing email', function () {
     $response->assertStatus(422)
         ->assertJsonValidationErrors(['email']);
 });
-
 
 test('it should logout with successfully', function () {
 

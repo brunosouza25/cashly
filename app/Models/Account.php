@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Enums\AccountStatus;
+use Database\Factories\AccountFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Account extends BaseModel
 {
-    /** @use HasFactory<\Database\Factories\AccountFactory> */
+    /** @use HasFactory<AccountFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -25,6 +26,7 @@ class Account extends BaseModel
         'balance' => 'decimal:2',
         'id' => 'string',
     ];
+
     public function accountType(): BelongsTo
     {
         return $this->belongsTo(AccountType::class);

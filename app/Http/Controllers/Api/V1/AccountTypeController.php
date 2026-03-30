@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountTypeRequest;
-use App\Http\Requests\UpdateAccountTypeRequest;
 use App\Http\Resources\AccountTypeResource;
 use App\Models\AccountType;
 
@@ -16,9 +15,9 @@ class AccountTypeController extends Controller
     public function index()
     {
         $types = AccountType::all();
+
         return AccountTypeResource::collection($types);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -44,6 +43,7 @@ class AccountTypeController extends Controller
     public function update(StoreAccountTypeRequest $request, AccountType $accountType)
     {
         $accountType->update($request->validated());
+
         return $accountType->toResource();
     }
 
@@ -53,6 +53,7 @@ class AccountTypeController extends Controller
     public function destroy(AccountType $accountType)
     {
         $accountType->delete();
+
         return response()->noContent();
     }
 }

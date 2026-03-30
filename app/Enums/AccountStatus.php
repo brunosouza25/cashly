@@ -7,8 +7,9 @@ enum AccountStatus: string
     case ACTIVE = 'active';
     case SUSPENDED = 'suspended';
     case CLOSED = 'closed';
-        public function label(): string
+
+    public function label(): string
     {
-        return __('enums.account_status.' . $this->value);
+        return __('enums.account_status.'.$this->value);
     }
 }

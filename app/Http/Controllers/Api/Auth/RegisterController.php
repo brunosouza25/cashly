@@ -23,6 +23,6 @@ class RegisterController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(["user" => new AuthResource($user), "token" => $token], Response::HTTP_CREATED);
+        return response()->json(['user' => new AuthResource($user), 'token' => $token], Response::HTTP_CREATED);
     }
 }
