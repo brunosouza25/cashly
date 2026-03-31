@@ -13,6 +13,3 @@ parameters:
     #checkOctaneCompatibility: true
 
     checkModelProperties: true
-
-    ignoreErrors:
-        - '#Unsafe usage of new static#'

@@ -24,7 +24,7 @@ class LoginController extends Controller
             ]);
         }
 
-        $token = $user->createToken(env('APP_NAME'))->plainTextToken;
+        $token = $user->createToken(config('app.name'))->plainTextToken;
 
         return response()->json(['token' => $token, 'user' => new AuthResource($user)]);
     }

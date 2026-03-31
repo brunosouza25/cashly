@@ -18,7 +18,7 @@ class AccountTypeFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array<model-property<AccountType>, mixed>
      */
     public function definition(): array
     {

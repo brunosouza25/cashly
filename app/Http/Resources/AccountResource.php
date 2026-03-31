@@ -15,21 +15,21 @@ class AccountResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
+            'id' => $this->resource->id,
+            'name' => $this->resource->name,
 
-            'balance' => (float) $this->balance,
-            'currency' => $this->currency,
+            'balance' => (float) $this->resource->balance,
+            'currency' => $this->resource->currency,
 
             'status' => [
-                'value' => $this->status->value,
-                'label' => $this->status->label(),
+                'value' => $this->resource->status->value,
+                'label' => $this->resource->status->label(),
             ],
 
             'type' => new AccountTypeResource($this->whenLoaded('accountType')),
 
-            'created_at' => $this->created_at?->toIso8601String(),
-            'updated_at' => $this->updated_at?->toIso8601String(),
+            'created_at' => $this->resource->created_at?->toIso8601String(),
+            'updated_at' => $this->resource->updated_at?->toIso8601String(),
         ];
     }
 }
