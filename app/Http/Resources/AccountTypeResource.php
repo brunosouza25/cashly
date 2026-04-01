@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\AccountType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property AccountType $resource
+ */
 class AccountTypeResource extends JsonResource
 {
     /**

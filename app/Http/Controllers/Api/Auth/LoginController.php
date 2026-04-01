@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuthResource;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Data\Auth\LoginData;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -14,18 +15,25 @@ class LoginController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(LoginData $data): JsonResponse
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $data->email)->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($data->password, (string) $user->password)) {
             throw ValidationException::withMessages([
                 'email' => [__('auth.failed')],
             ]);
         }
 
-        $token = $user->createToken(config('app.name'))->plainTextToken;
+        /** @var string $appName */
+        $appName = config('app.name', 'cashly_token');
 
-        return response()->json(['token' => $token, 'user' => new AuthResource($user)]);
+        $tokenName = str($appName)->slug()->toString() ?: 'cashly_token';
+        $token = $user->createToken($tokenName)->plainTextToken;
+
+        return response()->json([
+            'token' => $token,
+            'user' => new AuthResource($user)
+        ]);
     }
 }

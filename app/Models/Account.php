@@ -27,11 +27,17 @@ class Account extends BaseModel
         'id' => 'string',
     ];
 
+    /**
+     * @return BelongsTo<AccountType, $this>
+     */
     public function accountType(): BelongsTo
     {
         return $this->belongsTo(AccountType::class);
     }
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

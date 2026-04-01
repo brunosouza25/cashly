@@ -11,9 +11,7 @@ use Illuminate\Support\Str;
  */
 class AccountTypeFactory extends Factory
 {
-    public $incrementing = false;
-
-    protected $keyType = 'string';
+    protected string $keyType = 'string';
 
     /**
      * Define the model's default state.
@@ -22,6 +20,7 @@ class AccountTypeFactory extends Factory
      */
     public function definition(): array
     {
+        /** @var string $baseName */
         $baseName = fake()->randomElement([
             'Wallet',
             'Bank Account',

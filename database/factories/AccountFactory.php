@@ -7,6 +7,7 @@ use App\Models\Account;
 use App\Models\AccountType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Account>
@@ -21,7 +22,7 @@ class AccountFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => str()->uuid7(),
+            'id' => Str::uuid7()->toString(),
             'user_id' => User::factory(),
             'account_type_id' => AccountType::factory(),
             'name' => $this->faker->word().' Account',

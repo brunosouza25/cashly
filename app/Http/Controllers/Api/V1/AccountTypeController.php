@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountTypeRequest;
 use App\Http\Resources\AccountTypeResource;
 use App\Models\AccountType;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 class AccountTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         $types = AccountType::all();
 
@@ -22,7 +24,7 @@ class AccountTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAccountTypeRequest $request)
+    public function store(StoreAccountTypeRequest $request): AccountTypeResource
     {
         $account_type = AccountType::create($request->validated());
 
@@ -32,7 +34,7 @@ class AccountTypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(AccountType $accountType)
+    public function show(AccountType $accountType): AccountTypeResource
     {
         return $accountType->toResource();
     }
@@ -40,7 +42,7 @@ class AccountTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreAccountTypeRequest $request, AccountType $accountType)
+    public function update(StoreAccountTypeRequest $request, AccountType $accountType): AccountTypeResource
     {
         $accountType->update($request->validated());
 
@@ -50,7 +52,7 @@ class AccountTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AccountType $accountType)
+    public function destroy(AccountType $accountType): Response
     {
         $accountType->delete();
 

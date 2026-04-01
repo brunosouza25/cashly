@@ -8,7 +8,7 @@ parameters:
         - database/seeders
         - routes/
 
-    level: 5
+    level: max
 
     #checkOctaneCompatibility: true
 
