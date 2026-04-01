@@ -10,9 +10,11 @@ class AccountType extends BaseModel
 {
     /** @use HasFactory<AccountTypeFactory> */
     use HasFactory;
+
     public function toResource(?string $resourceClass = null): AccountTypeResource
     {
         return new AccountTypeResource($this);
     }
+
     protected $fillable = ['name', 'slug', 'icon', 'color'];
 }

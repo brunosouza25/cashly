@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Data\Auth\LoginData;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuthResource;
 use App\Models\User;
-use App\Data\Auth\LoginData;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -33,7 +33,7 @@ class LoginController extends Controller
 
         return response()->json([
             'token' => $token,
-            'user' => new AuthResource($user)
+            'user' => new AuthResource($user),
         ]);
     }
 }

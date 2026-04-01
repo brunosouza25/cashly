@@ -8,10 +8,10 @@ abstract class Controller
 {
     protected function getUser(): User
     {
-        /** @var \App\Models\User|null $user */
+        /** @var User|null $user */
         $user = auth()->user();
 
-        if (!$user) {
+        if (! $user) {
             abort(401);
         }
 
